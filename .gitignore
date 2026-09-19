@@ -1,5 +1,6 @@
 .godot/
 build/
+.wrangler/
 *.log
 .env
 .env.*
