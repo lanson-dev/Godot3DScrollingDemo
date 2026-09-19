@@ -1,3 +1,4 @@
+class_name BreachDemoHUD
 extends Control
 
 const REPOSITORY_URL: String = "https://github.com/lanson-dev/Godot3DScrollingDemo"
@@ -16,6 +17,7 @@ const REPOSITORY_URL: String = "https://github.com/lanson-dev/Godot3DScrollingDe
 @onready var chinese_button: Button = %ChineseButton
 @onready var english_button: Button = %EnglishButton
 @onready var repository_button: TextureButton = %RepositoryButton
+@onready var weapon_panel: ColorRect = $WeaponPanel
 
 var _bound: bool = false
 var _pointer: Vector2
@@ -39,6 +41,14 @@ func bind_player(actor: BreachPlayer) -> void:
 		_bind_player()
 
 
+func set_touch_mode(enabled: bool) -> void:
+	var edge: float = 0.5 if enabled else 1.0
+	weapon_panel.anchor_left = edge
+	weapon_panel.anchor_right = edge
+	weapon_panel.offset_left = -124.0 if enabled else -268.0
+	weapon_panel.offset_right = 124.0 if enabled else -20.0
+
+
 func _bind_player() -> void:
 	if _bound or player == null:
 		return
@@ -53,20 +63,22 @@ func _bind_player() -> void:
 func _physics_process(_delta: float) -> void:
 	if player == null or not player.controls_enabled or get_tree().paused:
 		return
-	if get_viewport().gui_get_hovered_control() != null:
+	if not player.weapons.virtual_pointer_enabled and get_viewport().gui_get_hovered_control() != null:
 		player.weapons.cancel_input()
 
 
 func _process(_delta: float) -> void:
-	_pointer = get_local_mouse_position()
+	var virtual_pointer: bool = player != null and player.weapons.virtual_pointer_enabled
+	_pointer = get_global_transform_with_canvas().affine_inverse() * player.weapons.pointer_screen_position() \
+		if player != null else get_local_mouse_position()
 	_reticle_visible = player != null and player.controls_enabled and not get_tree().paused \
-		and get_rect().has_point(_pointer) and get_viewport().gui_get_hovered_control() == null
+		and get_rect().has_point(_pointer) and (virtual_pointer or get_viewport().gui_get_hovered_control() == null)
 	if _reticle_visible:
 		var spec: WeaponSpec = player.weapons.current_spec()
 		_spread_radius = clampf(spread_radius(get_viewport().get_camera_3d()),
 			spec.crosshair_min_radius, spec.crosshair_max_radius)
 	if hide_system_pointer:
-		var mode: Input.MouseMode = Input.MOUSE_MODE_HIDDEN if _reticle_visible else Input.MOUSE_MODE_VISIBLE
+		var mode: Input.MouseMode = Input.MOUSE_MODE_HIDDEN if _reticle_visible and not virtual_pointer else Input.MOUSE_MODE_VISIBLE
 		if Input.mouse_mode != mode:
 			Input.mouse_mode = mode
 	if player != null:
@@ -79,7 +91,7 @@ func _draw() -> void:
 		return
 	var spec: WeaponSpec = player.weapons.current_spec()
 	if spec.pellets > 1:
-		var half_arc: float = minf(PI / 8.0, reticle_line_length / _spread_radius)
+		var half_arc: float = minf(PI / 8.0, reticle_line_length / maxf(_spread_radius, 0.001))
 		for corner: int in 4:
 			var angle: float = PI * (0.25 + corner * 0.5)
 			draw_arc(_pointer, _spread_radius, angle - half_arc, angle + half_arc, 6,

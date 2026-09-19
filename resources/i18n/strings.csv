@@ -7,3 +7,8 @@ HUD_NO_AMMO,弹药耗尽,OUT OF AMMO
 Rifle,步枪,Rifle
 Shotgun,霰弹枪,Shotgun
 Raider rifle,掠夺者步枪,Raider rifle
+MOBILE_SETTINGS,设,SET
+MOBILE_AIM,瞄准,AIM
+MOBILE_JUMP,跳起,JUMP
+MOBILE_CROUCH,蹲下,CROUCH
+MOBILE_FIRE,开火,FIRE

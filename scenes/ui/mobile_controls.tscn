@@ -1,0 +1,228 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/mobile_controls.gd" id="1_controls"]
+
+[sub_resource type="StyleBoxFlat" id="Wheel"]
+bg_color = Color(0.055, 0.08, 0.09, 0.34)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.76, 0.88, 0.85, 0.48)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id="Thumb"]
+bg_color = Color(0.73, 0.87, 0.82, 0.68)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="SmallButton"]
+bg_color = Color(0.06, 0.10, 0.11, 0.56)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.82, 0.92, 0.88, 0.7)
+corner_radius_top_left = 41
+corner_radius_top_right = 41
+corner_radius_bottom_right = 41
+corner_radius_bottom_left = 41
+
+[sub_resource type="StyleBoxFlat" id="FireButtonStyle"]
+bg_color = Color(0.76, 0.34, 0.26, 0.65)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.82, 0.66, 0.86)
+corner_radius_top_left = 70
+corner_radius_top_right = 70
+corner_radius_bottom_right = 70
+corner_radius_bottom_left = 70
+
+[node name="MobileControls" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_controls")
+
+[node name="Joystick" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_top = -290.0
+offset_right = 280.0
+offset_bottom = -90.0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Wheel")
+
+[node name="DirectionHint" type="Label" parent="Joystick"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 82.0
+offset_right = 200.0
+offset_bottom = 118.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.87, 0.96, 0.91, 0.72)
+theme_override_font_sizes/font_size = 28
+text = "<          >"
+horizontal_alignment = 1
+
+[node name="JoystickThumb" type="Panel" parent="Joystick"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 70.0
+offset_top = 70.0
+offset_right = 130.0
+offset_bottom = 130.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Thumb")
+
+[node name="SettingsButton" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 35.0
+offset_top = 150.0
+offset_right = 83.0
+offset_bottom = 198.0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SmallButton")
+
+[node name="Label" type="Label" parent="SettingsButton"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 48.0
+offset_bottom = 48.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 24
+text = "MOBILE_SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AimButton" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -218.0
+offset_top = -545.0
+offset_right = -128.0
+offset_bottom = -455.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SmallButton")
+
+[node name="Label" type="Label" parent="AimButton"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 90.0
+offset_bottom = 90.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 20
+text = "MOBILE_AIM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="JumpButton" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -392.0
+offset_top = -206.0
+offset_right = -296.0
+offset_bottom = -110.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SmallButton")
+
+[node name="Label" type="Label" parent="JumpButton"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 96.0
+offset_bottom = 96.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 20
+text = "MOBILE_JUMP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CrouchButton" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -235.0
+offset_top = -170.0
+offset_right = -139.0
+offset_bottom = -74.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SmallButton")
+
+[node name="Label" type="Label" parent="CrouchButton"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 96.0
+offset_bottom = 96.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 20
+text = "MOBILE_CROUCH"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FireButton" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -210.0
+offset_top = -365.0
+offset_right = -70.0
+offset_bottom = -225.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("FireButtonStyle")
+
+[node name="Label" type="Label" parent="FireButton"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 140.0
+offset_bottom = 140.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.98, 0.93, 1)
+theme_override_font_sizes/font_size = 24
+text = "MOBILE_FIRE"
+horizontal_alignment = 1
+vertical_alignment = 1

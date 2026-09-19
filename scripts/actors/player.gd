@@ -16,6 +16,7 @@ var _standing_capsule: CapsuleShape3D
 var _standing_center: Vector3
 var _standing_chest_height: float
 var _capsule_crouched: bool = false
+var _alive_collision_layer: int
 
 
 func _ready() -> void:
@@ -23,6 +24,7 @@ func _ready() -> void:
 	_standing_capsule = body_collision.shape.duplicate() as CapsuleShape3D
 	_standing_center = body_collision.position
 	_standing_chest_height = weapons.chest_height
+	_alive_collision_layer = collision_layer
 	health_component.died.connect(_die)
 	health_component.changed.connect(func(_hp: float, _maximum: float) -> void: status_changed.emit())
 	fell.connect(func() -> void: health_component.damage(health_component.health))
@@ -94,3 +96,18 @@ func _die() -> void:
 	visual.call("play_death")
 	collision_layer = 0
 	died.emit()
+
+
+func respawn(at: Vector3) -> void:
+	weapons.cancel_input()
+	weapons.reload_remaining = 0.0
+	weapons.cooldown = 0.0
+	weapons.action_audio.stop()
+	weapons.gun_audio.stop()
+	reset_at(at)
+	crouching = false
+	_set_stance_capsule(false)
+	collision_layer = _alive_collision_layer
+	visual.call("reset_visual")
+	health_component.reset()
+	controls_enabled = true

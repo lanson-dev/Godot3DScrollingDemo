@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://sjydqkrl6hku" path="res://scenes/actors/enemy.tscn" id="3_enemy"]
 [ext_resource type="Script" uid="uid://dy05ep14sb7vv" path="res://scripts/camera/side_camera.gd" id="4_camera"]
 [ext_resource type="PackedScene" path="res://scenes/ui/demo_hud.tscn" id="5_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/mobile_controls.tscn" id="6_mobile"]
+[ext_resource type="PackedScene" path="res://scenes/ui/demo_settings.tscn" id="7_settings"]
 
 [sub_resource type="Environment" id="Environment"]
 background_mode = 1
@@ -165,3 +167,10 @@ vertical_follow_weight = 0.4
 
 [node name="DemoHUD" parent="HUD" unique_id=259300764 node_paths=PackedStringArray("player") instance=ExtResource("5_hud")]
 player = NodePath("../../Player")
+
+[node name="MobileControls" parent="HUD" node_paths=PackedStringArray("player", "settings") instance=ExtResource("6_mobile")]
+player = NodePath("../../Player")
+settings = NodePath("../DemoSettings")
+
+[node name="DemoSettings" parent="HUD" node_paths=PackedStringArray("hud") instance=ExtResource("7_settings")]
+hud = NodePath("../DemoHUD")

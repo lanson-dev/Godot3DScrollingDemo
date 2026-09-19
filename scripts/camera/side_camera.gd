@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 		response = maxf(0.05, spec.aim_camera_response)
 		if weapons.aiming and spec.aim_camera_enabled:
 			var rect: Rect2 = get_viewport().get_visible_rect()
-			var cursor: Vector2 = (get_viewport().get_mouse_position() - rect.get_center()) / (rect.size * 0.5)
+			var cursor: Vector2 = (weapons.pointer_screen_position() - rect.get_center()) / (rect.size * 0.5)
 			cursor = cursor.clamp(Vector2(-1, -1), Vector2.ONE)
 			desired_aim = Vector3(cursor.x * spec.aim_camera_offset.x, -cursor.y * spec.aim_camera_offset.y, 0.0)
 	_aim_offset = _aim_offset.lerp(desired_aim, 1.0 - exp(-delta / response))

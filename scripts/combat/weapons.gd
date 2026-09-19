@@ -26,6 +26,8 @@ var reload_remaining: float = 0.0
 var aim_direction: Vector3 = Vector3.RIGHT
 var aim_target: Vector3
 var aiming: bool = false
+var virtual_pointer_enabled: bool = false
+var virtual_pointer_position: Vector2
 var _specs: Array[WeaponSpec]
 var _needs_release: bool = false
 var _aim_needs_release: bool = false
@@ -109,13 +111,17 @@ func set_aim_target(target: Vector3) -> void:
 			visual.call("prepare_shot")
 
 
+func pointer_screen_position() -> Vector2:
+	return virtual_pointer_position if virtual_pointer_enabled else get_viewport().get_mouse_position()
+
+
 func _update_pointer_aim() -> void:
 	var camera: Camera3D = get_viewport().get_camera_3d()
 	if camera == null:
 		return
-	var mouse: Vector2 = get_viewport().get_mouse_position()
+	var pointer: Vector2 = pointer_screen_position()
 	var plane := Plane(Vector3.BACK, actor.global_position.z)
-	var point: Variant = plane.intersects_ray(camera.project_ray_origin(mouse), camera.project_ray_normal(mouse))
+	var point: Variant = plane.intersects_ray(camera.project_ray_origin(pointer), camera.project_ray_normal(pointer))
 	if point is Vector3:
 		set_aim_target(point)
 

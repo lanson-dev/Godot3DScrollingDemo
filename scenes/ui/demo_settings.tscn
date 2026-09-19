@@ -1,0 +1,193 @@
+[gd_scene format=3 uid="uid://bof2cehpt1tod"]
+
+[ext_resource type="Script" path="res://scripts/ui/demo_settings.gd" id="1_settings"]
+
+[sub_resource type="ButtonGroup" id="Modes"]
+resource_local_to_scene = true
+
+[sub_resource type="StyleBoxFlat" id="ButtonNormal"]
+bg_color = Color(0.13, 0.18, 0.2, 0.98)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="ButtonHover"]
+bg_color = Color(0.21, 0.29, 0.31, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="ButtonPressed"]
+bg_color = Color(0.29, 0.42, 0.43, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[node name="DemoSettings" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_settings")
+
+[node name="PCButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 20.0
+offset_top = 100.0
+offset_right = 106.0
+offset_bottom = 132.0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("ButtonNormal")
+theme_override_styles/hover = SubResource("ButtonHover")
+theme_override_styles/pressed = SubResource("ButtonPressed")
+text = "设置"
+tooltip_text = "设置 / Settings"
+
+[node name="Backdrop" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.025, 0.04, 0.05, 0.7)
+
+[node name="Panel" type="ColorRect" parent="Backdrop"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = -155.0
+offset_right = 230.0
+offset_bottom = 155.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07, 0.105, 0.12, 0.98)
+
+[node name="Title" type="Label" parent="Backdrop/Panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 14.0
+offset_right = 310.0
+offset_bottom = 46.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 23
+text = "设置 / Settings"
+
+[node name="CloseButton" type="Button" parent="Backdrop/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 408.0
+offset_top = 15.0
+offset_right = 440.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("ButtonNormal")
+theme_override_styles/hover = SubResource("ButtonHover")
+theme_override_styles/pressed = SubResource("ButtonPressed")
+text = "X"
+tooltip_text = "关闭 / Close"
+
+[node name="AddNPCButton" type="Button" parent="Backdrop/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 20.0
+offset_top = 70.0
+offset_right = 220.0
+offset_bottom = 118.0
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("ButtonNormal")
+theme_override_styles/hover = SubResource("ButtonHover")
+theme_override_styles/pressed = SubResource("ButtonPressed")
+text = "添加 NPC / Add NPC"
+
+[node name="RespawnButton" type="Button" parent="Backdrop/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 240.0
+offset_top = 70.0
+offset_right = 440.0
+offset_bottom = 118.0
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("ButtonNormal")
+theme_override_styles/hover = SubResource("ButtonHover")
+theme_override_styles/pressed = SubResource("ButtonPressed")
+text = "复活玩家 / Respawn"
+
+[node name="ModeTitle" type="Label" parent="Backdrop/Panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 138.0
+offset_right = 390.0
+offset_bottom = 166.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 17
+text = "控制模式 / Controls"
+
+[node name="AutoButton" type="Button" parent="Backdrop/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 20.0
+offset_top = 174.0
+offset_right = 153.0
+offset_bottom = 220.0
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("ButtonNormal")
+theme_override_styles/hover = SubResource("ButtonHover")
+theme_override_styles/pressed = SubResource("ButtonPressed")
+toggle_mode = true
+button_group = SubResource("Modes")
+button_pressed = true
+text = "自动 / Auto"
+
+[node name="TouchButton" type="Button" parent="Backdrop/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 163.0
+offset_top = 174.0
+offset_right = 296.0
+offset_bottom = 220.0
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("ButtonNormal")
+theme_override_styles/hover = SubResource("ButtonHover")
+theme_override_styles/pressed = SubResource("ButtonPressed")
+toggle_mode = true
+button_group = SubResource("Modes")
+text = "触控 / Touch"
+
+[node name="KeyboardButton" type="Button" parent="Backdrop/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 306.0
+offset_top = 174.0
+offset_right = 440.0
+offset_bottom = 220.0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("ButtonNormal")
+theme_override_styles/hover = SubResource("ButtonHover")
+theme_override_styles/pressed = SubResource("ButtonPressed")
+toggle_mode = true
+button_group = SubResource("Modes")
+text = "键鼠 / K&M"
+
+[node name="ModeHint" type="Label" parent="Backdrop/Panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 237.0
+offset_right = 440.0
+offset_bottom = 290.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.7, 0.79, 0.79, 1)
+theme_override_font_sizes/font_size = 14
+text = "自动按设备切换；外接键盘可手动选键鼠。\nAuto follows device; choose K&M for an external keyboard."
