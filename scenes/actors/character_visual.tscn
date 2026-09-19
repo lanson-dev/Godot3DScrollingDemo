@@ -1,0 +1,192 @@
+[gd_scene format=4 uid="uid://bsehun0lvtx27"]
+
+[ext_resource type="Script" path="res://scripts/actors/character_visual.gd" id="1_a2tbd"]
+
+[ext_resource type="AnimationLibrary" path="res://assets/animations/characters/combat_actions.tres" id="2_mmbr0"]
+
+[ext_resource type="PackedScene" path="res://assets/models/characters/survivor_body.glb" id="3_ghebp"]
+
+[ext_resource type="PackedScene" path="res://scenes/weapons/rifle.tscn" id="view_0"]
+
+[ext_resource type="PackedScene" path="res://scenes/weapons/shotgun.tscn" id="view_1"]
+
+
+[ext_resource type="Script" path="res://scripts/actors/aim_modifier.gd" id="7_tybk7"]
+
+[ext_resource type="AnimationNodeBlendTree" path="res://resources/actors/combat_animation.tres" id="8_34t6k"]
+[ext_resource type="Script" path="res://scripts/actors/foot_placement.gd" id="feet_script"]
+[ext_resource type="Script" path="res://scripts/actors/slope_posture.gd" id="slope_script"]
+
+[ext_resource type="Material" path="res://resources/actors/character_cloth.tres" id="10_cloth"]
+[ext_resource type="Material" path="res://resources/actors/character_armor.tres" id="11_armor"]
+[ext_resource type="Material" path="res://resources/actors/character_skin.tres" id="12_skin"]
+[ext_resource type="Material" path="res://resources/actors/character_metal.tres" id="13_metal"]
+[ext_resource type="AnimationLibrary" path="res://assets/animations/characters/crouch_actions.tres" id="14_crouch"]
+
+
+[node name="VisualRoot" type="Node3D" unique_id=150328440]
+process_physics_priority = 1
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+scale = Vector3(0.75, 0.75, 0.75)
+script = ExtResource("1_a2tbd")
+combat_library = ExtResource("2_mmbr0")
+crouch_library = ExtResource("14_crouch")
+
+[node name="Model" parent="." unique_id=1030934245 instance=ExtResource("3_ghebp")]
+
+[node name="Head" parent="Model/Survivor/CharacterArmature/Skeleton3D/Head_2" index="0"]
+surface_material_override/0 = ExtResource("13_metal")
+surface_material_override/1 = ExtResource("10_cloth")
+surface_material_override/2 = ExtResource("11_armor")
+
+[node name="ShoulderPad_L" parent="Model/Survivor/CharacterArmature/Skeleton3D/UpperArm_L" index="0"]
+surface_material_override/0 = ExtResource("11_armor")
+
+[node name="ShoulderPad_R" parent="Model/Survivor/CharacterArmature/Skeleton3D/UpperArm_R" index="0"]
+surface_material_override/0 = ExtResource("11_armor")
+
+[node name="Body" parent="Model/Survivor/CharacterArmature/Skeleton3D" index="3"]
+surface_material_override/0 = ExtResource("12_skin")
+surface_material_override/1 = ExtResource("11_armor")
+surface_material_override/2 = ExtResource("10_cloth")
+surface_material_override/3 = ExtResource("10_cloth")
+surface_material_override/4 = ExtResource("11_armor")
+
+[node name="Hand" type="BoneAttachment3D" parent="Model/Survivor/CharacterArmature/Skeleton3D" index="4" unique_id=1328397616]
+transform = Transform3D(-0.899536, 0.43517935, -0.038124852, -0.0141460225, 0.058209464, 0.99820405, 0.43661723, 0.8984603, -0.04620552, -0.5247865, 1.4158162, 0.42972487)
+bone_name = "Index1.R"
+bone_idx = 31
+
+[node name="Rifle" parent="Model/Survivor/CharacterArmature/Skeleton3D/Hand" instance=ExtResource("view_0")]
+
+[node name="Shotgun" parent="Model/Survivor/CharacterArmature/Skeleton3D/Hand" instance=ExtResource("view_1")]
+visible = false
+
+[node name="SlopePosture" type="SkeletonModifier3D" parent="Model/Survivor/CharacterArmature/Skeleton3D" index="5"]
+script = ExtResource("slope_script")
+
+[node name="Aim" type="SkeletonModifier3D" parent="Model/Survivor/CharacterArmature/Skeleton3D" index="7" unique_id=1353562841 node_paths=PackedStringArray("hand", "muzzle", "support_ik")]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+rotation_edit_mode = 0
+rotation_order = 2
+top_level = false
+visible = true
+visibility_parent = NodePath("")
+active = true
+influence = 1.0
+script = ExtResource("7_tybk7")
+hand = NodePath("../Hand")
+muzzle = NodePath("../Hand/Rifle/Model/AK/Muzzle")
+support_ik = NodePath("../SupportIK")
+
+[node name="SupportElbow" type="Marker3D" parent="Model/Survivor/CharacterArmature/Skeleton3D" index="8" unique_id=1033424965]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.9, -0.1)
+
+[node name="SupportIK" type="TwoBoneIK3D" parent="Model/Survivor/CharacterArmature/Skeleton3D" index="9" unique_id=630376117]
+setting_count = 1
+settings/0/target_node = NodePath("../Hand/Rifle/Model/AK/SupportGrip")
+settings/0/pole_node = NodePath("../SupportElbow")
+settings/0/root_bone_name = "UpperArm.L"
+settings/0/root_bone = 9
+settings/0/middle_bone_name = "LowerArm.L"
+settings/0/middle_bone = 10
+settings/0/pole_direction = 0
+settings/0/end_bone_name = "Index1.L"
+settings/0/end_bone = 17
+settings/0/use_virtual_end = false
+settings/0/extend_end_bone = false
+
+[node name="AnimationPlayer" parent="Model" index="1" unique_id=609510986]
+libraries/combat = ExtResource("2_mmbr0")
+libraries/crouch = ExtResource("14_crouch")
+
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1840723715]
+process_physics_priority = 2
+root_node = NodePath("../Model")
+callback_mode_process = 0
+tree_root = ExtResource("8_34t6k")
+anim_player = NodePath("../Model/AnimationPlayer")
+parameters/Locomotion/Grounded/Motion/blend_position = 0.0
+parameters/Locomotion/Grounded/Pace/scale = 1.0
+parameters/Locomotion/Crouch/Motion/blend_position = 0.0
+parameters/Locomotion/Crouch/Pace/scale = 1.0
+parameters/UpperBody/blend_amount = 1.0
+parameters/ShotMotion/blend_position = 0.0
+parameters/Shot/active = false
+parameters/Shot/internal_active = false
+parameters/Shot/request = 2
+parameters/ReloadRate/scale = 1.0
+parameters/Reload/active = false
+parameters/Reload/internal_active = false
+parameters/Reload/request = 2
+parameters/Hit/active = false
+parameters/Hit/internal_active = false
+parameters/Hit/request = 2
+parameters/DeathSeek/seek_request = -1.0
+parameters/DeathBlend/blend_amount = 0.0
+
+
+[node name="FootPlacement" type="SkeletonModifier3D" parent="Model/Survivor/CharacterArmature/Skeleton3D" index="10" node_paths=PackedStringArray("left_ik", "right_ik")]
+script = ExtResource("feet_script")
+left_ik = NodePath("../LeftLegIK")
+right_ik = NodePath("../RightLegIK")
+left_sole = PackedVector3Array(-0.106, -0.05, -0.041, 0.067, -0.05, -0.041, -0.106, 0.292, -0.041, 0.067, 0.292, -0.041)
+right_sole = PackedVector3Array(-0.067, -0.05, -0.041, 0.106, -0.05, -0.041, -0.067, 0.292, -0.041, 0.106, 0.292, -0.041)
+
+[node name="LeftTarget" type="Marker3D" parent="Model/Survivor/CharacterArmature/Skeleton3D/FootPlacement"]
+
+[node name="RightTarget" type="Marker3D" parent="Model/Survivor/CharacterArmature/Skeleton3D/FootPlacement"]
+
+[node name="LeftKnee" type="Marker3D" parent="Model/Survivor/CharacterArmature/Skeleton3D/FootPlacement"]
+
+[node name="RightKnee" type="Marker3D" parent="Model/Survivor/CharacterArmature/Skeleton3D/FootPlacement"]
+
+[node name="LeftGround" type="RayCast3D" parent="Model/Survivor/CharacterArmature/Skeleton3D/FootPlacement"]
+enabled = false
+collision_mask = 9
+
+[node name="RightGround" type="RayCast3D" parent="Model/Survivor/CharacterArmature/Skeleton3D/FootPlacement"]
+enabled = false
+collision_mask = 9
+
+[node name="LeftLegIK" type="TwoBoneIK3D" parent="Model/Survivor/CharacterArmature/Skeleton3D" index="11"]
+active = false
+setting_count = 1
+settings/0/target_node = NodePath("../FootPlacement/LeftTarget")
+settings/0/pole_node = NodePath("../FootPlacement/LeftKnee")
+settings/0/root_bone_name = "UpperLeg.L"
+settings/0/middle_bone_name = "LowerLeg.L"
+settings/0/pole_direction = 0
+settings/0/use_virtual_end = true
+settings/0/extend_end_bone = true
+settings/0/end_bone/direction = 2
+settings/0/end_bone/length = 0.5475701
+
+[node name="RightLegIK" type="TwoBoneIK3D" parent="Model/Survivor/CharacterArmature/Skeleton3D" index="12"]
+active = false
+setting_count = 1
+settings/0/target_node = NodePath("../FootPlacement/RightTarget")
+settings/0/pole_node = NodePath("../FootPlacement/RightKnee")
+settings/0/root_bone_name = "UpperLeg.R"
+settings/0/middle_bone_name = "LowerLeg.R"
+settings/0/pole_direction = 0
+settings/0/use_virtual_end = true
+settings/0/extend_end_bone = true
+settings/0/end_bone/direction = 2
+settings/0/end_bone/length = 0.54757
+
+[editable path="Model"]
+
+
+
+
+

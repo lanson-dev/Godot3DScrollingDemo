@@ -1,0 +1,31 @@
+BREACHLINE character body-shape adaptation
+Created: 2026-09-11
+Author of base character and 17 skeletal animations: Quaternius
+Pack: Toon Shooter Game Kit (December 2022)
+Official source: https://quaternius.com/packs/toonshootergamekit.html
+Base license: Creative Commons CC0 1.0 Universal; commercial use, modification and redistribution allowed; attribution not required.
+Full license and original acquisition record: assets/models/characters/LICENSE-CC0.txt and SOURCE.txt.
+BodySlim / BodyHeavy shape changes were authored for this project using Blender MCP; no additional third-party model, animation pack or attribution requirement was introduced.
+
+Preserved base: assets/models/characters/survivor.glb
+Base size: 743584 bytes
+Base SHA256: D98A530D390A8E62244ACEE02C23CD2ECB2E06478B789C999822CBA3A86F221B
+Editable isolated source: assets/sources/characters/survivor_body.blend
+Source scene: BL_BodyProfile; Blender 4.5.2 LTS, actual Blender MCP operations.
+Source size: 970228 bytes
+Source SHA256 at this material-generation stage: 81B66E65426896A3B53FA272BCF5554E4400556FFFCAB6CB23F98AAD33F0C630
+Runtime derivative: assets/models/characters/survivor_body.glb
+Derivative size: 894068 bytes
+Derivative SHA256 at this material-generation stage: F4C8D858DEBCE5C0A7384DB05BC595ED13357363205B588E580EC42AD1AFC537
+These identify this asset-generation stage, not a final project/release source snapshot.
+
+Adaptation:
+- Added two editable native Blender keys, BodySlim and BodyHeavy, on Body; default weights are zero. Body contains 3053 mapped vertices / 13164 corners. Each key moves 641 vertices; 1430 protected positions, including hands/boots, remain unchanged.
+- Verified mapping through Body.matrix_world and Blender Z-up to glTF Y-up. Maximum position error was 5.960464477539062e-7 m; UV and skin-weight mapping errors were zero.
+- Extracted only new POSITION/NORMAL targets. Appended 20 accessors and 20 bufferViews; retained the original 355684-byte BIN prefix exactly. Removing the added morph references and restoring the original buffer length reproduces the original JSON records exactly.
+- Existing node/bone names, skin binds, 17 animations, materials, base positions/normals and old references are preserved. The source survivor.glb remains separate and unchanged.
+- Full Blender round-trip export was rejected because it resampled existing animation channels and changed small normal/vertex-split details. Its failed baseline remains failed; it was not used as the runtime derivative.
+- A normal full export of this Blend is therefore not equivalent to the append-only derivative. The preserved original GLB and the new shape deltas are both needed to preserve the calibrated original data.
+
+Evidence: docs/evidence/inc10-character-settings.md and inc10-body-{mapping,morph,map-probe,baseline,roundtrip-diagnosis,geometry}.json.
+The heavy/slim native Blender viewports were inspected and showed no obvious static seams. Initial Godot setting-page screenshots also exist. Animation combinations, full functional/OS acceptance and body extremes remain unverified at this stage.

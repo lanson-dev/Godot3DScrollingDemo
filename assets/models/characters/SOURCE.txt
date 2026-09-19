@@ -1,0 +1,26 @@
+Toon Shooter Game Kit - Character_Soldier
+Author: Quaternius
+Original release: December 2022
+Acquired: 2026-09-11
+Official source: https://quaternius.com/packs/toonshootergamekit.html
+Official download folder: https://drive.google.com/drive/folders/1-BDs_EIyd6uiF2XuoyiZEcqnMQIJrE0C
+Original character file: https://drive.google.com/uc?export=download&id=18UU-iuYMQyrQ3OAMFoRA8DkZ2Uo_2cai
+Original licensing notice on official pack page: License CC0
+License: Creative Commons CC0 1.0 Universal
+Legal code: https://creativecommons.org/publicdomain/zero/1.0/legalcode
+Permission: commercial use, modification and redistribution allowed; attribution not required.
+License text is preserved in LICENSE-CC0.txt. Source download did not contain a separate license file.
+
+Adaptation for BREACHLINE:
+- Converted the self-contained glTF to GLB with Blender 4.5.2 LTS.
+- Removed simultaneously attached weapon options from the character.
+- Preserved 17 named skeletal animations, sampled at the source rate of 30 fps.
+- Normalized rest-pose height to 1.8 m and feet to origin; +Y up and front +Z.
+- Corrected penetrating walk/run frames with a vertical Root animation lift (maximum 0.111 m); airborne frames retained. Other clips key the unchanged Root position to clear offsets when switching.
+- Kept the original materials and bone names. No textures or other dependencies required.
+- AK and Shotgun were exported separately under weapons/ with original bone-local transforms.
+
+Original Character_Soldier.gltf SHA256: D1395255F7CFA8F766369E37E724FA44E2895A46A719D17F720C9C78B014A901
+Adapted survivor.glb SHA256: D98A530D390A8E62244ACEE02C23CD2ECB2E06478B789C999822CBA3A86F221B
+
+

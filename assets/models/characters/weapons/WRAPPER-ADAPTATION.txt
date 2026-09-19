@@ -1,0 +1,11 @@
+2026-09-11 BREACHLINE wrapper adjustments (original GLB files preserved):
+
+AK model instance scale: 0.70 of its original hand-local placement.
+Shotgun model instance scale: 0.55; its hand-local forward axis is aligned
+to the AK hold reference before aiming. Both scales and rotations are saved
+on the weapon Model nodes in scenes/weapons/rifle.tscn and scenes/weapons/shotgun.tscn.
+
+Muzzle markers remain at the actual barrel endpoints and move with the
+entire weapon mesh. SupportGrip markers identify the magazine/receiver area
+for the character's short support arm; native TwoBoneIK3D preserves arm
+length rather than stretching it at extreme aim angles.

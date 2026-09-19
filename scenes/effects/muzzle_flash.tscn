@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dse47mt7seyu6"]
+
+[ext_resource type="Script" path="res://scripts/effects/particle_burst.gd" id="1_burst"]
+
+[sub_resource type="StandardMaterial3D" id="Flash_material"]
+transparency = 1
+vertex_color_use_as_albedo = true
+shading_mode = 0
+albedo_color = Color(1, 0.84, 0.4, 1)
+emission_enabled = true
+emission = Color(1, 0.64, 0.17, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="SphereMesh" id="Flash_mesh"]
+material = SubResource("Flash_material")
+radius = 0.012
+height = 0.024
+radial_segments = 6
+rings = 3
+
+[sub_resource type="Gradient" id="Fade"]
+offsets = PackedFloat32Array(0, 0.35, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.8, 0.5, 0.7, 1, 0.4, 0.1, 0)
+
+[node name="MuzzleFlash" type="CPUParticles3D"]
+process_mode = 1
+emitting = false
+amount = 6
+lifetime = 0.08
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("Flash_mesh")
+cast_shadow = 0
+color_ramp = SubResource("Fade")
+direction = Vector3(1, 0, 0)
+spread = 20.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
+scale_amount_min = 0.6
+scale_amount_max = 1.2
+script = ExtResource("1_burst")

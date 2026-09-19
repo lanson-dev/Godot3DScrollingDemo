@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://or7pks0hgvxj"]
+
+[ext_resource type="Script" path="res://scripts/actors/player.gd" id="1_player"]
+[ext_resource type="PackedScene" path="res://scenes/actors/character_visual.tscn" id="2_visual"]
+[ext_resource type="PackedScene" path="res://scenes/actors/movement_feedback.tscn" id="3_feedback"]
+[ext_resource type="Script" path="res://scripts/combat/health.gd" id="5_health"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/weapons.tscn" id="6_weapons"]
+
+[sub_resource type="CapsuleShape3D" id="Capsule_body"]
+radius = 0.225
+height = 1.35
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+collision_layer = 2
+collision_mask = 13
+axis_lock_linear_z = true
+floor_stop_on_slope = true
+floor_constant_speed = true
+floor_max_angle = 0.95993109
+floor_snap_length = 0.35
+platform_floor_layers = 9
+script = ExtResource("1_player")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.675, 0)
+shape = SubResource("Capsule_body")
+
+[node name="VisualRoot" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("2_visual")]
+actor = NodePath("..")
+
+[node name="MovementFeedback" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("3_feedback")]
+actor = NodePath("..")
+walk_cycle_distance = 1.635
+run_cycle_distance = 1.32
+crouch_cycle_distance = 0.5839802
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("5_health")
+
+[node name="Weapons" parent="." node_paths=PackedStringArray("actor", "visual") instance=ExtResource("6_weapons")]
+actor = NodePath("..")
+visual = NodePath("../VisualRoot")
+chest_height = 0.9

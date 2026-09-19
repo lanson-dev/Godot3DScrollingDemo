@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dlxf5oqdu2um2"]
+
+[ext_resource type="Script" path="res://scripts/effects/particle_burst.gd" id="1_burst"]
+
+[sub_resource type="StandardMaterial3D" id="Dust_material"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxMesh" id="Dust_mesh"]
+material = SubResource("Dust_material")
+size = Vector3(0.055, 0.055, 0.055)
+
+[sub_resource type="Gradient" id="Dust_fade"]
+offsets = PackedFloat32Array(0, 0.65, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.5, 1, 1, 1, 0)
+
+[node name="FootDust" type="CPUParticles3D"]
+process_mode = 1
+emitting = false
+amount = 14
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+randomness = 0.6
+mesh = SubResource("Dust_mesh")
+emission_shape = 1
+emission_sphere_radius = 0.24
+direction = Vector3(0, 1, 0)
+spread = 75.0
+gravity = Vector3(0, -5, 0)
+initial_velocity_min = 0.6
+initial_velocity_max = 1.6
+scale_amount_min = 0.5
+scale_amount_max = 1.8
+color_ramp = SubResource("Dust_fade")
+script = ExtResource("1_burst")

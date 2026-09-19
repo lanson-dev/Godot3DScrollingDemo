@@ -1,0 +1,145 @@
+[gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://bg4ts3cs8apyx"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cwbck"]
+animation = &"Jump_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="DescentPose"]
+animation = &"Jump_Land"
+use_custom_timeline = true
+timeline_length = 0.001
+stretch_time_scale = false
+start_offset = 0.3
+loop_mode = 0
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AirMotion"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_cwbck")
+blend_point_0/pos = 0.0
+blend_point_0/name = &"Rising"
+blend_point_1/node = SubResource("DescentPose")
+blend_point_1/pos = 1.0
+blend_point_1/name = &"Descending"
+
+[sub_resource type="AnimationNodeAnimation" id="CrouchIdle"]
+animation = &"crouch/Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="CrouchWalk"]
+animation = &"crouch/Walk"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="CrouchMotion"]
+value_label = "Crouch idle / walk"
+blend_point_0/node = SubResource("CrouchIdle")
+blend_point_0/pos = 0.0
+blend_point_0/name = &"Idle"
+blend_point_1/node = SubResource("CrouchWalk")
+blend_point_1/pos = 1.0
+blend_point_1/name = &"Walk"
+
+[sub_resource type="AnimationNodeTimeScale" id="CrouchPace"]
+
+[sub_resource type="AnimationNodeBlendTree" id="CrouchTree"]
+nodes/Motion/node = SubResource("CrouchMotion")
+nodes/Motion/position = Vector2(-300, 0)
+nodes/Pace/node = SubResource("CrouchPace")
+nodes/Pace/position = Vector2(-60, 0)
+node_connections = [&"output", 0, &"Pace", &"Pace", 0, &"Motion"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_17usl"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qlyht"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q7u63"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_tiwr4"]
+min_space = 0.0
+max_space = 2.0
+value_label = "Idle / Walk / Run"
+sync_mode = 2
+blend_point_0/node = SubResource("AnimationNodeAnimation_17usl")
+blend_point_0/pos = 0.0
+blend_point_0/name = &"Idle"
+blend_point_1/node = SubResource("AnimationNodeAnimation_qlyht")
+blend_point_1/pos = 1.0
+blend_point_1/name = &"Walk"
+blend_point_2/node = SubResource("AnimationNodeAnimation_q7u63")
+blend_point_2/pos = 2.0
+blend_point_2/name = &"Run"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_j0upf"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6erby"]
+nodes/Motion/node = SubResource("AnimationNodeBlendSpace1D_tiwr4")
+nodes/Motion/position = Vector2(-300, 0)
+nodes/Pace/node = SubResource("AnimationNodeTimeScale_j0upf")
+nodes/Pace/position = Vector2(-60, 0)
+node_connections = [&"output", 0, &"Pace", &"Pace", 0, &"Motion"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pq5a1"]
+animation = &"Jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6pkbs"]
+animation = &"Jump_Land"
+use_custom_timeline = true
+timeline_length = 0.1333333
+stretch_time_scale = false
+start_offset = 0.3
+loop_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1smet"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h16ch"]
+xfade_time = 0.08
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_80fja"]
+xfade_time = 0.12
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7kb3j"]
+xfade_time = 0.03
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eqocw"]
+xfade_time = 0.08
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jpeqe"]
+xfade_time = 0.03
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eaqei"]
+xfade_time = 0.07
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3s2oj"]
+xfade_time = 0.03
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vif7x"]
+xfade_time = 0.08
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_acb3b"]
+xfade_time = 0.07
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_26y2o"]
+xfade_time = 0.12
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="CrouchTransition"]
+xfade_time = 0.18
+
+[resource]
+resource_name = "Survivor locomotion"
+allow_transition_to_self = true
+states/Air/node = SubResource("AirMotion")
+states/Air/position = Vector2(440, 290)
+states/Crouch/node = SubResource("CrouchTree")
+states/Crouch/position = Vector2(0, -100)
+states/End/position = Vector2(700, 290)
+states/Grounded/node = SubResource("AnimationNodeBlendTree_6erby")
+states/Grounded/position = Vector2(220, 100)
+states/Jump/node = SubResource("AnimationNodeAnimation_pq5a1")
+states/Jump/position = Vector2(440, 100)
+states/Land/node = SubResource("AnimationNodeAnimation_6pkbs")
+states/Land/position = Vector2(220, 290)
+states/Start/position = Vector2(-40, 100)
+transitions = ["Start", "Grounded", SubResource("AnimationNodeStateMachineTransition_1smet"), "Grounded", "Jump", SubResource("AnimationNodeStateMachineTransition_h16ch"), "Grounded", "Air", SubResource("AnimationNodeStateMachineTransition_80fja"), "Grounded", "Land", SubResource("AnimationNodeStateMachineTransition_7kb3j"), "Jump", "Air", SubResource("AnimationNodeStateMachineTransition_eqocw"), "Jump", "Land", SubResource("AnimationNodeStateMachineTransition_jpeqe"), "Air", "Jump", SubResource("AnimationNodeStateMachineTransition_eaqei"), "Air", "Land", SubResource("AnimationNodeStateMachineTransition_3s2oj"), "Land", "Grounded", SubResource("AnimationNodeStateMachineTransition_vif7x"), "Land", "Jump", SubResource("AnimationNodeStateMachineTransition_acb3b"), "Land", "Air", SubResource("AnimationNodeStateMachineTransition_26y2o"), "Grounded", "Crouch", SubResource("CrouchTransition"), "Air", "Crouch", SubResource("CrouchTransition"), "Jump", "Crouch", SubResource("CrouchTransition"), "Land", "Crouch", SubResource("CrouchTransition"), "Crouch", "Grounded", SubResource("CrouchTransition"), "Crouch", "Air", SubResource("CrouchTransition")]

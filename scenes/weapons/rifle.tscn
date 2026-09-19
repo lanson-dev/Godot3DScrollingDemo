@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://w5bjoncf28on"]
+
+[ext_resource type="PackedScene" path="res://assets/models/characters/weapons/ak.glb" id="4_364c7"]
+[ext_resource type="Script" path="res://scripts/combat/weapon_view.gd" id="view_script"]
+
+[ext_resource type="PackedScene" path="res://scenes/effects/muzzle_flame.tscn" id="flame"]
+[ext_resource type="AnimationLibrary" path="res://resources/weapons/muzzle/animation.tres" id="flash_animation"]
+[ext_resource type="Resource" path="res://resources/weapons/muzzle/rifle.tres" id="flash_profile"]
+
+[node name="Rifle" type="Node3D" node_paths=PackedStringArray("muzzle", "support_grip", "feedback")]
+script = ExtResource("view_script")
+muzzle_flash_profile = ExtResource("flash_profile")
+muzzle = NodePath("Model/AK/Muzzle")
+support_grip = NodePath("Model/AK/SupportGrip")
+feedback = NodePath("Feedback")
+
+[node name="Model" parent="." unique_id=685306014 instance=ExtResource("4_364c7")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+
+[node name="Muzzle" type="Marker3D" parent="Model/AK" index="0" unique_id=97253850]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4940174, 0.5840581, 0.004049561)
+gizmo_extents = 0.3
+
+[node name="Flash" parent="Model/AK/Muzzle" instance=ExtResource("flame")]
+visible = false
+
+[node name="SupportGrip" type="Marker3D" parent="Model/AK" index="1" unique_id=1033776021]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.12, 0.08)
+
+[node name="Feedback" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Model/AK/Muzzle/Flash")
+callback_mode_process = 0
+libraries/ = ExtResource("flash_animation")
+
+[editable path="Model"]

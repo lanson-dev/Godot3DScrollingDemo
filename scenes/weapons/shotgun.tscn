@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://d3m0x8dxbh72a"]
+
+[ext_resource type="PackedScene" path="res://assets/models/characters/weapons/shotgun.glb" id="5_86d7c"]
+[ext_resource type="Script" path="res://scripts/combat/weapon_view.gd" id="view_script"]
+
+[ext_resource type="PackedScene" path="res://scenes/effects/muzzle_flame.tscn" id="flame"]
+[ext_resource type="AnimationLibrary" path="res://resources/weapons/muzzle/animation.tres" id="flash_animation"]
+[ext_resource type="Resource" path="res://resources/weapons/muzzle/shotgun.tres" id="flash_profile"]
+
+[node name="Shotgun" type="Node3D" node_paths=PackedStringArray("muzzle", "support_grip", "feedback")]
+visible = false
+script = ExtResource("view_script")
+muzzle_flash_profile = ExtResource("flash_profile")
+muzzle = NodePath("Model/Shotgun/Muzzle")
+support_grip = NodePath("Model/Shotgun/SupportGrip")
+feedback = NodePath("Feedback")
+
+[node name="Model" parent="." unique_id=542044312 instance=ExtResource("5_86d7c")]
+transform = Transform3D(0.508779108, 0.208579682, 0.0117610782, -0.20890738, 0.507780587, 0.0318837327, 0.00123318546, -0.0339613678, 0.548949077,  0,  0,  0)
+
+[node name="Muzzle" type="Marker3D" parent="Model/Shotgun" index="0" unique_id=1156003914]
+transform = Transform3D(-1, 0, 0, 0, -1, 0, 0, 0, 1, -1.2796811, 0.00048085433, 0.06317898)
+gizmo_extents = 0.3
+
+[node name="Flash" parent="Model/Shotgun/Muzzle" instance=ExtResource("flame")]
+visible = false
+
+[node name="SupportGrip" type="Marker3D" parent="Model/Shotgun" index="1" unique_id=2100751862]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12, 0, 0.05)
+
+[node name="Feedback" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Model/Shotgun/Muzzle/Flash")
+callback_mode_process = 0
+libraries/ = ExtResource("flash_animation")
+
+[editable path="Model"]

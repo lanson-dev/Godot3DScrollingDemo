@@ -1,0 +1,9 @@
+keys,zh_CN,en
+HUD_HEALTH,生命,HEALTH
+HUD_AMMO,弹药,AMMO
+HUD_RELOADING,换弹中 %.1f 秒,RELOADING %.1f s
+HUD_RELOAD_HINT,R 换弹,R RELOAD
+HUD_NO_AMMO,弹药耗尽,OUT OF AMMO
+Rifle,步枪,Rifle
+Shotgun,霰弹枪,Shotgun
+Raider rifle,掠夺者步枪,Raider rifle

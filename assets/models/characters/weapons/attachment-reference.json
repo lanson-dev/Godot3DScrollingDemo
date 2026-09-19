@@ -1,0 +1,41 @@
+{
+  "AK": {
+    "attach_to_original_bone": "Index1.R",
+    "original_gltf_transform": {
+      "translation": [
+        0.01034456491470337,
+        0.15148556033937458,
+        -0.054102301597595215
+      ],
+      "rotation": [
+        0.07112709432840347,
+        0.07164561003446579,
+        0.5258881449699402,
+        0.8445410132408142
+      ],
+      "scale": [
+        0.41791191697120667,
+        0.41791194677352905,
+        0.41791197657585144
+      ]
+    },
+    "notes": "Original bone-local placement preserved. Attach below the survivor skeleton at the named bone; inherit Survivor scale. Not normalized as a ground prop."
+  },
+  "Shotgun": {
+    "attach_to_original_bone": "Index1.R",
+    "original_gltf_transform": {
+      "translation": [
+        -0.03956213593482971,
+        0.19722810189096454,
+        -0.07035121321678162
+      ],
+      "rotation": [
+        0.4583534896373749,
+        -0.47960832715034485,
+        -0.5488527417182922,
+        0.5085752010345459
+      ]
+    },
+    "notes": "Original bone-local placement preserved. Attach below the survivor skeleton at the named bone; inherit Survivor scale. Not normalized as a ground prop."
+  }
+}

@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://b1i1hrpr47gh"]
+
+[ext_resource type="Script" path="res://scripts/actors/movement_feedback.gd" id="1_feedback"]
+[ext_resource type="PackedScene" path="res://scenes/effects/foot_dust.tscn" id="2_dust"]
+[ext_resource type="AudioStream" path="res://assets/audio/kenney/footstep_concrete_000.ogg" id="3_step"]
+[ext_resource type="AudioStream" path="res://assets/audio/kenney/footstep_concrete_001.ogg" id="4_step"]
+[ext_resource type="AudioStream" path="res://assets/audio/kenney/footstep_concrete_002.ogg" id="5_step"]
+
+[node name="MovementFeedback" type="Node"]
+process_physics_priority = 3
+script = ExtResource("1_feedback")
+dust_scene = ExtResource("2_dust")
+footstep_sounds = Array[AudioStream]([ExtResource("3_step"), ExtResource("4_step"), ExtResource("5_step")])
+
+[node name="AudioOrigin" type="Node3D" parent="."]
+
+[node name="LeftStep" type="AudioStreamPlayer3D" parent="AudioOrigin"]
+position = Vector3(0, 0.08, -0.16)
+stream = ExtResource("3_step")
+volume_db = -14.0
+unit_size = 7.0
+max_distance = 28.0
+
+[node name="RightStep" type="AudioStreamPlayer3D" parent="AudioOrigin"]
+position = Vector3(0, 0.08, 0.16)
+stream = ExtResource("4_step")
+volume_db = -14.0
+unit_size = 7.0
+max_distance = 28.0
+
+[node name="Landing" type="AudioStreamPlayer3D" parent="AudioOrigin"]
+position = Vector3(0, 0.05, 0)
+stream = ExtResource("3_step")
+volume_db = -9.0
+unit_size = 9.0
+max_distance = 32.0

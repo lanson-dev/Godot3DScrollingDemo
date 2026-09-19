@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://djpmtqwka58o3"]
+
+[resource]
+resource_name = "Character Cloth Sand Grey"
+cull_mode = 2
+albedo_color = Color(0.64, 0.61, 0.54, 1)
+metallic = 0
+roughness = 0.85

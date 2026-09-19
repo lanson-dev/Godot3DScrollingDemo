@@ -1,0 +1,167 @@
+[gd_scene format=3 uid="uid://b7j7inni8ka27"]
+
+[ext_resource type="Script" uid="uid://dy1ivbnuks3yk" path="res://scripts/gameplay/demo.gd" id="1_demo"]
+[ext_resource type="PackedScene" uid="uid://or7pks0hgvxj" path="res://scenes/actors/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://sjydqkrl6hku" path="res://scenes/actors/enemy.tscn" id="3_enemy"]
+[ext_resource type="Script" uid="uid://dy05ep14sb7vv" path="res://scripts/camera/side_camera.gd" id="4_camera"]
+[ext_resource type="PackedScene" path="res://scenes/ui/demo_hud.tscn" id="5_hud"]
+
+[sub_resource type="Environment" id="Environment"]
+background_mode = 1
+background_color = Color(0.12, 0.16, 0.19, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.8, 0.85, 0.88, 1)
+ambient_light_energy = 0.35
+reflected_light_source = 1
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="BackdropMaterial"]
+albedo_color = Color(0.14, 0.19, 0.22, 1)
+
+[sub_resource type="BoxMesh" id="BackdropMesh"]
+material = SubResource("BackdropMaterial")
+size = Vector3(40, 6, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="GroundMaterial"]
+albedo_color = Color(0.25, 0.29, 0.3, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="GroundMesh"]
+material = SubResource("GroundMaterial")
+size = Vector3(40, 1, 4)
+
+[sub_resource type="BoxShape3D" id="GroundShape"]
+size = Vector3(40, 1, 4)
+
+[sub_resource type="BoxMesh" id="RampMesh"]
+material = SubResource("GroundMaterial")
+size = Vector3(4.4, 0.24, 3.6)
+
+[sub_resource type="BoxShape3D" id="RampShape"]
+size = Vector3(4.4, 0.24, 3.6)
+
+[sub_resource type="BoxMesh" id="PlatformMesh"]
+material = SubResource("GroundMaterial")
+size = Vector3(3.4, 0.3, 3.6)
+
+[sub_resource type="BoxShape3D" id="PlatformShape"]
+size = Vector3(3.4, 0.3, 3.6)
+
+[sub_resource type="StandardMaterial3D" id="CoverMaterial"]
+albedo_color = Color(0.37, 0.35, 0.29, 1)
+roughness = 0.85
+
+[sub_resource type="BoxMesh" id="CoverMesh"]
+material = SubResource("CoverMaterial")
+size = Vector3(0.7, 1.25, 2.6)
+
+[sub_resource type="BoxShape3D" id="CoverShape"]
+size = Vector3(0.7, 1.25, 2.6)
+
+[sub_resource type="BoxMesh" id="BoundaryMesh"]
+material = SubResource("GroundMaterial")
+size = Vector3(0.4, 2.2, 4)
+
+[sub_resource type="BoxShape3D" id="BoundaryShape"]
+size = Vector3(0.4, 2.2, 4)
+
+[node name="Main" type="Node3D" unique_id=891103329]
+script = ExtResource("1_demo")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=817862044]
+environment = SubResource("Environment")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=1043583856]
+transform = Transform3D(0.853778, 0.4371438, -0.2827868, -0.09312498, 0.66261864, 0.74314487, 0.51224095, -0.6081462, 0.6064382, 0, 0, 0)
+light_color = Color(1, 0.96, 0.88, 1)
+light_energy = 1.05
+shadow_enabled = true
+shadow_opacity = 0.7
+directional_shadow_max_distance = 44.0
+
+[node name="World" type="Node3D" parent="." unique_id=80851973]
+
+[node name="Backdrop" type="MeshInstance3D" parent="World" unique_id=1984034066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -2.5)
+mesh = SubResource("BackdropMesh")
+
+[node name="Ground" type="StaticBody3D" parent="World" unique_id=1862966047]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="World/Ground" unique_id=1324072157]
+mesh = SubResource("GroundMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="World/Ground" unique_id=1774502256]
+shape = SubResource("GroundShape")
+
+[node name="Ramp" type="StaticBody3D" parent="World" unique_id=2074573132]
+transform = Transform3D(0.9135455, -0.4067366, 0, 0.4067366, 0.9135455, 0, 0, 0, 1, -15.8, 0.77, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="World/Ramp" unique_id=928218409]
+mesh = SubResource("RampMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="World/Ramp" unique_id=598342824]
+shape = SubResource("RampShape")
+
+[node name="Platform" type="StaticBody3D" parent="World" unique_id=1034340067]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1, 1.6, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="World/Platform" unique_id=257423198]
+mesh = SubResource("PlatformMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="World/Platform" unique_id=335458363]
+shape = SubResource("PlatformShape")
+
+[node name="Cover" type="StaticBody3D" parent="World" unique_id=1956204855]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 0.625, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="World/Cover" unique_id=1984616793]
+mesh = SubResource("CoverMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="World/Cover" unique_id=1675394983]
+shape = SubResource("CoverShape")
+
+[node name="WestBoundary" type="StaticBody3D" parent="World" unique_id=1924982400]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.2, 1.1, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="World/WestBoundary" unique_id=136376780]
+mesh = SubResource("BoundaryMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="World/WestBoundary" unique_id=1090638804]
+shape = SubResource("BoundaryShape")
+
+[node name="EastBoundary" type="StaticBody3D" parent="World" unique_id=2006758296]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.2, 1.1, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="World/EastBoundary" unique_id=1852922171]
+mesh = SubResource("BoundaryMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="World/EastBoundary" unique_id=1334824289]
+shape = SubResource("BoundaryShape")
+
+[node name="Player" parent="." unique_id=376799772 instance=ExtResource("2_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.05, 0)
+
+[node name="Enemy" parent="." unique_id=160543503 node_paths=PackedStringArray("target") instance=ExtResource("3_enemy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.05, 0)
+target = NodePath("../Player")
+patrol_radius = 3.0
+
+[node name="SideCamera" type="Camera3D" parent="." unique_id=97833548 node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.99026805, 0.1391731, 0, -0.1391731, 0.99026805, -5, 3.2, 17)
+projection = 1
+current = true
+size = 9.5
+near = 0.1
+far = 80.0
+script = ExtResource("4_camera")
+target = NodePath("../Player")
+follow_speed = 5.5
+look_ahead = 1.2
+look_ahead_response = 0.65
+vertical_follow_weight = 0.4
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=55155012]
+
+[node name="DemoHUD" parent="HUD" unique_id=259300764 node_paths=PackedStringArray("player") instance=ExtResource("5_hud")]
+player = NodePath("../../Player")

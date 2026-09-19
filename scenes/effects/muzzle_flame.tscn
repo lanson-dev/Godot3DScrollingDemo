@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://odi17kpotwl1"]
+
+[sub_resource type="StandardMaterial3D" id="Amber"]
+shading_mode = 0
+albedo_color = Color(1, 0.4, 0.08, 1)
+emission_enabled = true
+emission = Color(1, 0.36, 0.055, 1)
+emission_energy_multiplier = 0.35
+
+[sub_resource type="StandardMaterial3D" id="Hot"]
+shading_mode = 0
+albedo_color = Color(1, 0.97, 0.78, 1)
+emission_enabled = true
+emission = Color(1, 0.84, 0.46, 1)
+emission_energy_multiplier = 0.9
+
+[sub_resource type="CylinderMesh" id="Outer"]
+material = SubResource("Amber")
+top_radius = 0.0
+bottom_radius = 0.12
+height = 0.6
+radial_segments = 5
+rings = 1
+
+[sub_resource type="CylinderMesh" id="Core"]
+material = SubResource("Hot")
+top_radius = 0.0
+bottom_radius = 0.078
+height = 0.43
+radial_segments = 5
+rings = 1
+
+[node name="MuzzleFlame" type="Node3D"]
+
+[node name="Flame" type="Node3D" parent="."]
+
+[node name="Outer" type="MeshInstance3D" parent="Flame"]
+position = Vector3(0.3, 0, 0)
+rotation_degrees = Vector3(0, 0, -90)
+scale = Vector3(1, 1, 0.35)
+cast_shadow = 0
+mesh = SubResource("Outer")
+
+[node name="Core" type="MeshInstance3D" parent="Flame"]
+position = Vector3(0.20, 0, 0)
+rotation_degrees = Vector3(0, 0, -90)
+cast_shadow = 0
+mesh = SubResource("Core")
+
+[node name="Upper" type="MeshInstance3D" parent="Flame"]
+position = Vector3(0.115, 0.062, 0)
+rotation_degrees = Vector3(0, 0, -60)
+scale = Vector3(0.46, 0.52, 0.46)
+cast_shadow = 0
+mesh = SubResource("Outer")
+
+[node name="Lower" type="MeshInstance3D" parent="Flame"]
+position = Vector3(0.095, -0.07, 0)
+rotation_degrees = Vector3(0, 0, -125)
+scale = Vector3(0.40, 0.44, 0.40)
+cast_shadow = 0
+mesh = SubResource("Outer")
+
+[node name="Light" type="OmniLight3D" parent="."]
+position = Vector3(0.035, 0, 0)
+light_color = Color(1, 0.72, 0.36, 1)
+light_energy = 0.0
+light_specular = 0.35
+light_bake_mode = 0
+shadow_enabled = true
+shadow_bias = 0.02
+shadow_normal_bias = 0.4
+omni_range = 1.8
+omni_attenuation = 1.7

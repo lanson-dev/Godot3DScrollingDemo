@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="WeaponSpec" format=3 uid="uid://bynutldarprl0"]
+
+[ext_resource type="Script" path="res://scripts/combat/weapon_spec.gd" id="1_spec"]
+[ext_resource type="Resource" path="res://resources/weapons/muzzle/shotgun.tres" id="muzzle"]
+
+[ext_resource type="PackedScene" path="res://scenes/weapons/shotgun.tscn" id="view"]
+[ext_resource type="AudioStream" path="res://assets/audio/firearms/O_21P_shot01.ogg" id="fire_audio"]
+[ext_resource type="AudioStream" path="res://assets/audio/zer0_sol/Rack.ogg" id="reload_audio"]
+
+[resource]
+script = ExtResource("1_spec")
+muzzle_flash_profile = ExtResource("muzzle")
+crosshair_min_radius = 12.0
+crosshair_max_radius = 72.0
+view_scene = ExtResource("view")
+fire_sound = ExtResource("fire_audio")
+reload_sound = ExtResource("reload_audio")
+weapon_id = &"shotgun"
+display_name = "Shotgun"
+ads_move_multiplier = 0.5
+damage = 14.0
+interval = 0.68
+magazine_size = 6
+reserve_start = 36
+reload_seconds = 1.8
+pellets = 7
+spread_degrees = 20.626480625
+move_spread_degrees = 4.0
+air_spread_degrees = 10.0
+crouch_spread_multiplier = 0.75
+ads_spread_multiplier = 0.75
+bloom_per_shot_degrees = 2.0
+bloom_limit_degrees = 8.0
+bloom_delay = 0.3
+bloom_recovery_degrees = 6.0
+projectile_speed = 40.0
+reach = 56.0
+
+aim_camera_enabled = true
+aim_camera_offset = Vector2(1.4, 0.7)

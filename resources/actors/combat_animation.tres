@@ -1,0 +1,97 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://df1wdtutpsbn3"]
+
+[ext_resource type="AnimationNodeStateMachine" uid="uid://bg4ts3cs8apyx" path="res://resources/actors/locomotion.tres" id="1_jnwnx"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dr3lp"]
+animation = &"Death"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vqncd"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_fk66w"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q24wf"]
+animation = &"combat/Hold"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_80vqv"]
+filter_enabled = true
+filters = ["Survivor/CharacterArmature/Skeleton3D:Abdomen", "Survivor/CharacterArmature/Skeleton3D:Head_2", "Survivor/CharacterArmature/Skeleton3D:Index1.L", "Survivor/CharacterArmature/Skeleton3D:Index1.R", "Survivor/CharacterArmature/Skeleton3D:Index2.L", "Survivor/CharacterArmature/Skeleton3D:Index2.R", "Survivor/CharacterArmature/Skeleton3D:Index3.L", "Survivor/CharacterArmature/Skeleton3D:Index3.R", "Survivor/CharacterArmature/Skeleton3D:LowerArm.L", "Survivor/CharacterArmature/Skeleton3D:LowerArm.R", "Survivor/CharacterArmature/Skeleton3D:Middle1.L", "Survivor/CharacterArmature/Skeleton3D:Middle1.R", "Survivor/CharacterArmature/Skeleton3D:Middle2.L", "Survivor/CharacterArmature/Skeleton3D:Middle2.R", "Survivor/CharacterArmature/Skeleton3D:Middle3.L", "Survivor/CharacterArmature/Skeleton3D:Middle3.R", "Survivor/CharacterArmature/Skeleton3D:Neck", "Survivor/CharacterArmature/Skeleton3D:Pinky1.L", "Survivor/CharacterArmature/Skeleton3D:Pinky1.R", "Survivor/CharacterArmature/Skeleton3D:Pinky2.L", "Survivor/CharacterArmature/Skeleton3D:Pinky2.R", "Survivor/CharacterArmature/Skeleton3D:Pinky3.L", "Survivor/CharacterArmature/Skeleton3D:Pinky3.R", "Survivor/CharacterArmature/Skeleton3D:Shoulder.L", "Survivor/CharacterArmature/Skeleton3D:Shoulder.R", "Survivor/CharacterArmature/Skeleton3D:Thumb1.L", "Survivor/CharacterArmature/Skeleton3D:Thumb1.R", "Survivor/CharacterArmature/Skeleton3D:Thumb2.L", "Survivor/CharacterArmature/Skeleton3D:Thumb2.R", "Survivor/CharacterArmature/Skeleton3D:Torso", "Survivor/CharacterArmature/Skeleton3D:UpperArm.L", "Survivor/CharacterArmature/Skeleton3D:UpperArm.R"]
+fadein_time = 0.035
+fadeout_time = 0.08
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jjv5e"]
+animation = &"HitReact"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_su7qw"]
+filter_enabled = true
+filters = ["Survivor/CharacterArmature/Skeleton3D:Abdomen", "Survivor/CharacterArmature/Skeleton3D:Head_2", "Survivor/CharacterArmature/Skeleton3D:Index1.L", "Survivor/CharacterArmature/Skeleton3D:Index1.R", "Survivor/CharacterArmature/Skeleton3D:Index2.L", "Survivor/CharacterArmature/Skeleton3D:Index2.R", "Survivor/CharacterArmature/Skeleton3D:Index3.L", "Survivor/CharacterArmature/Skeleton3D:Index3.R", "Survivor/CharacterArmature/Skeleton3D:LowerArm.L", "Survivor/CharacterArmature/Skeleton3D:LowerArm.R", "Survivor/CharacterArmature/Skeleton3D:Middle1.L", "Survivor/CharacterArmature/Skeleton3D:Middle1.R", "Survivor/CharacterArmature/Skeleton3D:Middle2.L", "Survivor/CharacterArmature/Skeleton3D:Middle2.R", "Survivor/CharacterArmature/Skeleton3D:Middle3.L", "Survivor/CharacterArmature/Skeleton3D:Middle3.R", "Survivor/CharacterArmature/Skeleton3D:Neck", "Survivor/CharacterArmature/Skeleton3D:Pinky1.L", "Survivor/CharacterArmature/Skeleton3D:Pinky1.R", "Survivor/CharacterArmature/Skeleton3D:Pinky2.L", "Survivor/CharacterArmature/Skeleton3D:Pinky2.R", "Survivor/CharacterArmature/Skeleton3D:Pinky3.L", "Survivor/CharacterArmature/Skeleton3D:Pinky3.R", "Survivor/CharacterArmature/Skeleton3D:Shoulder.L", "Survivor/CharacterArmature/Skeleton3D:Shoulder.R", "Survivor/CharacterArmature/Skeleton3D:Thumb1.L", "Survivor/CharacterArmature/Skeleton3D:Thumb1.R", "Survivor/CharacterArmature/Skeleton3D:Thumb2.L", "Survivor/CharacterArmature/Skeleton3D:Thumb2.R", "Survivor/CharacterArmature/Skeleton3D:Torso", "Survivor/CharacterArmature/Skeleton3D:UpperArm.L", "Survivor/CharacterArmature/Skeleton3D:UpperArm.R"]
+fadein_time = 0.035
+fadeout_time = 0.08
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fn4fs"]
+animation = &"combat/Reload"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_x3d2p"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_vf2vu"]
+filter_enabled = true
+filters = ["Survivor/CharacterArmature/Skeleton3D:Abdomen", "Survivor/CharacterArmature/Skeleton3D:Head_2", "Survivor/CharacterArmature/Skeleton3D:Index1.L", "Survivor/CharacterArmature/Skeleton3D:Index1.R", "Survivor/CharacterArmature/Skeleton3D:Index2.L", "Survivor/CharacterArmature/Skeleton3D:Index2.R", "Survivor/CharacterArmature/Skeleton3D:Index3.L", "Survivor/CharacterArmature/Skeleton3D:Index3.R", "Survivor/CharacterArmature/Skeleton3D:LowerArm.L", "Survivor/CharacterArmature/Skeleton3D:LowerArm.R", "Survivor/CharacterArmature/Skeleton3D:Middle1.L", "Survivor/CharacterArmature/Skeleton3D:Middle1.R", "Survivor/CharacterArmature/Skeleton3D:Middle2.L", "Survivor/CharacterArmature/Skeleton3D:Middle2.R", "Survivor/CharacterArmature/Skeleton3D:Middle3.L", "Survivor/CharacterArmature/Skeleton3D:Middle3.R", "Survivor/CharacterArmature/Skeleton3D:Neck", "Survivor/CharacterArmature/Skeleton3D:Pinky1.L", "Survivor/CharacterArmature/Skeleton3D:Pinky1.R", "Survivor/CharacterArmature/Skeleton3D:Pinky2.L", "Survivor/CharacterArmature/Skeleton3D:Pinky2.R", "Survivor/CharacterArmature/Skeleton3D:Pinky3.L", "Survivor/CharacterArmature/Skeleton3D:Pinky3.R", "Survivor/CharacterArmature/Skeleton3D:Shoulder.L", "Survivor/CharacterArmature/Skeleton3D:Shoulder.R", "Survivor/CharacterArmature/Skeleton3D:Thumb1.L", "Survivor/CharacterArmature/Skeleton3D:Thumb1.R", "Survivor/CharacterArmature/Skeleton3D:Thumb2.L", "Survivor/CharacterArmature/Skeleton3D:Thumb2.R", "Survivor/CharacterArmature/Skeleton3D:Torso", "Survivor/CharacterArmature/Skeleton3D:UpperArm.L", "Survivor/CharacterArmature/Skeleton3D:UpperArm.R"]
+fadein_time = 0.035
+fadeout_time = 0.08
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7byyl"]
+animation = &"Idle_Shoot"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4flai"]
+animation = &"Walk_Shoot"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sqinr"]
+animation = &"Run_Shoot"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_mgojs"]
+min_space = 0.0
+max_space = 2.0
+value_label = "Idle / Walk / Run shooting"
+blend_point_0/node = SubResource("AnimationNodeAnimation_7byyl")
+blend_point_0/pos = 0.0
+blend_point_0/name = &"0"
+blend_point_1/node = SubResource("AnimationNodeAnimation_4flai")
+blend_point_1/pos = 1.0
+blend_point_1/name = &"1"
+blend_point_2/node = SubResource("AnimationNodeAnimation_sqinr")
+blend_point_2/pos = 2.0
+blend_point_2/name = &"2"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_mkste"]
+filter_enabled = true
+filters = ["Survivor/CharacterArmature/Skeleton3D:Abdomen", "Survivor/CharacterArmature/Skeleton3D:Head_2", "Survivor/CharacterArmature/Skeleton3D:Index1.L", "Survivor/CharacterArmature/Skeleton3D:Index1.R", "Survivor/CharacterArmature/Skeleton3D:Index2.L", "Survivor/CharacterArmature/Skeleton3D:Index2.R", "Survivor/CharacterArmature/Skeleton3D:Index3.L", "Survivor/CharacterArmature/Skeleton3D:Index3.R", "Survivor/CharacterArmature/Skeleton3D:LowerArm.L", "Survivor/CharacterArmature/Skeleton3D:LowerArm.R", "Survivor/CharacterArmature/Skeleton3D:Middle1.L", "Survivor/CharacterArmature/Skeleton3D:Middle1.R", "Survivor/CharacterArmature/Skeleton3D:Middle2.L", "Survivor/CharacterArmature/Skeleton3D:Middle2.R", "Survivor/CharacterArmature/Skeleton3D:Middle3.L", "Survivor/CharacterArmature/Skeleton3D:Middle3.R", "Survivor/CharacterArmature/Skeleton3D:Neck", "Survivor/CharacterArmature/Skeleton3D:Pinky1.L", "Survivor/CharacterArmature/Skeleton3D:Pinky1.R", "Survivor/CharacterArmature/Skeleton3D:Pinky2.L", "Survivor/CharacterArmature/Skeleton3D:Pinky2.R", "Survivor/CharacterArmature/Skeleton3D:Pinky3.L", "Survivor/CharacterArmature/Skeleton3D:Pinky3.R", "Survivor/CharacterArmature/Skeleton3D:Shoulder.L", "Survivor/CharacterArmature/Skeleton3D:Shoulder.R", "Survivor/CharacterArmature/Skeleton3D:Thumb1.L", "Survivor/CharacterArmature/Skeleton3D:Thumb1.R", "Survivor/CharacterArmature/Skeleton3D:Thumb2.L", "Survivor/CharacterArmature/Skeleton3D:Thumb2.R", "Survivor/CharacterArmature/Skeleton3D:Torso", "Survivor/CharacterArmature/Skeleton3D:UpperArm.L", "Survivor/CharacterArmature/Skeleton3D:UpperArm.R"]
+
+[resource]
+resource_name = "Locomotion with gun combat actions"
+nodes/output/position = Vector2(1100, -100)
+nodes/Locomotion/node = ExtResource("1_jnwnx")
+nodes/Locomotion/position = Vector2(-1200, -150)
+nodes/GunHold/node = SubResource("AnimationNodeAnimation_q24wf")
+nodes/GunHold/position = Vector2(-1200, 100)
+nodes/UpperBody/node = SubResource("AnimationNodeBlend2_mkste")
+nodes/UpperBody/position = Vector2(-700, -100)
+nodes/ShotMotion/node = SubResource("AnimationNodeBlendSpace1D_mgojs")
+nodes/ShotMotion/position = Vector2(-700, 150)
+nodes/Shot/node = SubResource("AnimationNodeOneShot_vf2vu")
+nodes/Shot/position = Vector2(-420, -100)
+nodes/ReloadAnimation/node = SubResource("AnimationNodeAnimation_fn4fs")
+nodes/ReloadAnimation/position = Vector2(-270, 250)
+nodes/ReloadRate/node = SubResource("AnimationNodeTimeScale_x3d2p")
+nodes/ReloadRate/position = Vector2(-220, 50)
+nodes/Reload/node = SubResource("AnimationNodeOneShot_su7qw")
+nodes/Reload/position = Vector2(-120, -100)
+nodes/HitAnimation/node = SubResource("AnimationNodeAnimation_jjv5e")
+nodes/HitAnimation/position = Vector2(400, 150)
+nodes/Hit/node = SubResource("AnimationNodeOneShot_80vqv")
+nodes/Hit/position = Vector2(460, -100)
+nodes/DeathAnimation/node = SubResource("AnimationNodeAnimation_dr3lp")
+nodes/DeathAnimation/position = Vector2(500, 400)
+nodes/DeathSeek/node = SubResource("AnimationNodeTimeSeek_fk66w")
+nodes/DeathSeek/position = Vector2(700, 250)
+nodes/DeathBlend/node = SubResource("AnimationNodeBlend2_vqncd")
+nodes/DeathBlend/position = Vector2(850, -100)
+node_connections = [&"output", 0, &"DeathBlend", &"UpperBody", 0, &"Locomotion", &"UpperBody", 1, &"GunHold", &"Shot", 0, &"UpperBody", &"Shot", 1, &"ShotMotion", &"ReloadRate", 0, &"ReloadAnimation", &"Reload", 0, &"Shot", &"Reload", 1, &"ReloadRate", &"Hit", 0, &"Reload", &"Hit", 1, &"HitAnimation", &"DeathSeek", 0, &"DeathAnimation", &"DeathBlend", 0, &"Hit", &"DeathBlend", 1, &"DeathSeek"]

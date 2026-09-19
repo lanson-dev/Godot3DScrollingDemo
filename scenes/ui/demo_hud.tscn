@@ -1,0 +1,158 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/demo_hud.gd" id="1"]
+
+[sub_resource type="StyleBoxFlat" id="HealthFill"]
+bg_color = Color(0.78, 0.86, 0.78, 1)
+
+[sub_resource type="ButtonGroup" id="Languages"]
+
+[node name="DemoHUD" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1")
+
+[node name="HealthPanel" type="ColorRect" parent="."]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 240.0
+offset_bottom = 88.0
+mouse_filter = 2
+color = Color(0.055, 0.07, 0.08, 0.74)
+
+[node name="HealthTitle" type="Label" parent="HealthPanel"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 92.0
+offset_bottom = 32.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 17
+text = "HUD_HEALTH"
+
+[node name="HealthValue" type="Label" parent="HealthPanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 98.0
+offset_top = 7.0
+offset_right = 208.0
+offset_bottom = 33.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 19
+text = "100 / 100"
+horizontal_alignment = 2
+
+[node name="HealthBar" type="ProgressBar" parent="HealthPanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 12.0
+offset_top = 43.0
+offset_right = 208.0
+offset_bottom = 52.0
+mouse_filter = 2
+theme_override_styles/fill = SubResource("HealthFill")
+value = 100.0
+show_percentage = false
+
+[node name="LanguagePanel" type="ColorRect" parent="."]
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -196.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 66.0
+grow_horizontal = 0
+mouse_filter = 2
+color = Color(0.055, 0.07, 0.08, 0.74)
+
+[node name="ChineseButton" type="Button" parent="LanguagePanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 85.0
+offset_bottom = 39.0
+theme_override_font_sizes/font_size = 16
+toggle_mode = true
+button_group = SubResource("Languages")
+text = "中文"
+
+[node name="EnglishButton" type="Button" parent="LanguagePanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 91.0
+offset_top = 7.0
+offset_right = 169.0
+offset_bottom = 39.0
+theme_override_font_sizes/font_size = 16
+toggle_mode = true
+button_group = SubResource("Languages")
+text = "English"
+
+[node name="WeaponPanel" type="ColorRect" parent="."]
+layout_mode = 1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -268.0
+offset_top = -104.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0.055, 0.07, 0.08, 0.74)
+
+[node name="WeaponName" type="Label" parent="WeaponPanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 12.0
+offset_top = 5.0
+offset_right = 236.0
+offset_bottom = 34.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 23
+text = "Rifle"
+
+[node name="AmmoTitle" type="Label" parent="WeaponPanel"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 38.0
+offset_right = 95.0
+offset_bottom = 62.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 16
+text = "HUD_AMMO"
+
+[node name="AmmoValue" type="Label" parent="WeaponPanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 93.0
+offset_top = 35.0
+offset_right = 236.0
+offset_bottom = 63.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 20
+text = "24 / 144"
+horizontal_alignment = 2
+
+[node name="ReloadHint" type="Label" parent="WeaponPanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 12.0
+offset_top = 63.0
+offset_right = 236.0
+offset_bottom = 82.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.95, 0.78, 0.53, 1)
+theme_override_font_sizes/font_size = 14
+text = "HUD_RELOAD_HINT"

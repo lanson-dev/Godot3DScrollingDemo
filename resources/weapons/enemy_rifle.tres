@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="WeaponSpec" format=3 uid="uid://clo33ipebxhj4"]
+
+[ext_resource type="Script" path="res://scripts/combat/weapon_spec.gd" id="1"]
+
+[ext_resource type="PackedScene" path="res://scenes/weapons/rifle.tscn" id="view"]
+[ext_resource type="AudioStream" path="res://assets/audio/firearms/C_28P_shot01.ogg" id="fire_audio"]
+[ext_resource type="AudioStream" path="res://assets/audio/kenney/metalLatch.ogg" id="reload_audio"]
+
+[resource]
+script = ExtResource("1")
+view_scene = ExtResource("view")
+fire_sound = ExtResource("fire_audio")
+reload_sound = ExtResource("reload_audio")
+weapon_id = &"rifle"
+display_name = "Raider rifle"
+damage = 9.0
+interval = 0.75
+magazine_size = 24
+reserve_start = 400
+reload_seconds = 1.5
+pellets = 1
+spread_degrees = 4.0
+move_spread_degrees = 6.0
+air_spread_degrees = 10.0
+bloom_per_shot_degrees = 0.5
+bloom_limit_degrees = 2.0
+bloom_delay = 0.3
+bloom_recovery_degrees = 4.0
+projectile_speed = 20.0
+reach = 28.0

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MuzzleFlashProfile" format=3 uid="uid://b3w5kr84mj35p"]
+
+[ext_resource type="Script" path="res://scripts/combat/muzzle_flash_profile.gd" id="profile"]
+
+[resource]
+script = ExtResource("profile")
+flame_scale = Vector3(1.6, 1.36, 1.36)
+duration = 0.055
+light_energy = 1.8
+light_range = 1.8
+spark_radius = 0.012

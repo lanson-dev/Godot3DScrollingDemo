@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://sjydqkrl6hku"]
+
+[ext_resource type="Script" path="res://scripts/actors/enemy.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/actors/character_visual.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/actors/movement_feedback.tscn" id="3"]
+[ext_resource type="Script" path="res://scripts/combat/health.gd" id="4"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/weapons.tscn" id="5"]
+[ext_resource type="Resource" path="res://resources/weapons/enemy_rifle.tres" id="6"]
+
+[sub_resource type="CapsuleShape3D" id="BodyShape"]
+radius = 0.225
+height = 1.35
+
+[sub_resource type="StandardMaterial3D" id="Flash"]
+shading_mode = 0
+albedo_color = Color(1, 0.8, 0.65, 1)
+
+[sub_resource type="StandardMaterial3D" id="Red"]
+albedo_color = Color(0.8, 0.035, 0.02, 1)
+roughness = 0.6
+
+[sub_resource type="CylinderMesh" id="Collar"]
+material = SubResource("Red")
+top_radius = 0.24
+bottom_radius = 0.3
+height = 0.14
+radial_segments = 8
+
+[sub_resource type="BoxMesh" id="ShoulderPatch"]
+material = SubResource("Red")
+size = Vector3(0.25, 0.1, 0.28)
+
+[node name="Enemy" type="CharacterBody3D" groups=["enemy", "damageable"]]
+collision_layer = 4
+collision_mask = 11
+axis_lock_linear_z = true
+floor_stop_on_slope = true
+floor_constant_speed = true
+floor_max_angle = 0.95993109
+floor_snap_length = 0.35
+platform_floor_layers = 9
+script = ExtResource("1")
+human_control = false
+walk_speed = 3.0
+sprint_speed = 4.0
+flash_material = SubResource("Flash")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.675, 0)
+shape = SubResource("BodyShape")
+
+[node name="VisualRoot" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("2")]
+actor = NodePath("..")
+
+[node name="RedCollar" type="BoneAttachment3D" parent="VisualRoot/Model/Survivor/CharacterArmature/Skeleton3D"]
+bone_name = "Neck"
+
+[node name="Collar" type="MeshInstance3D" parent="VisualRoot/Model/Survivor/CharacterArmature/Skeleton3D/RedCollar"]
+mesh = SubResource("Collar")
+
+[node name="RedShoulder" type="BoneAttachment3D" parent="VisualRoot/Model/Survivor/CharacterArmature/Skeleton3D"]
+bone_name = "UpperArm.R"
+
+[node name="Patch" type="MeshInstance3D" parent="VisualRoot/Model/Survivor/CharacterArmature/Skeleton3D/RedShoulder"]
+mesh = SubResource("ShoulderPatch")
+
+[node name="MovementFeedback" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("3")]
+actor = NodePath("..")
+walk_cycle_distance = 1.635
+run_cycle_distance = 1.32
+crouch_cycle_distance = 0.5839802
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("4")
+max_health = 90.0
+
+[node name="Weapons" parent="." node_paths=PackedStringArray("actor", "visual") instance=ExtResource("5")]
+actor = NodePath("..")
+visual = NodePath("../VisualRoot")
+rifle = ExtResource("6")
+projectile_mask = 11
+chest_height = 0.9
+
+[node name="HealthLabel" type="Label3D" parent="."]
+position = Vector3(0, 1.6, 0)
+billboard = 1
+font_size = 32
+pixel_size = 0.006
+outline_size = 8
+text = "90 / 90"
+modulate = Color(1, 0.8, 0.75, 1)
+
+[node name="Sight" type="RayCast3D" parent="."]
+position = Vector3(0, 0.9, 0)
+target_position = Vector3(18, 0, 0)
+collision_mask = 11
+
+[node name="Probes" type="Node3D" parent="."]
+
+[node name="Low" type="RayCast3D" parent="Probes"]
+position = Vector3(0, 0.2625, 0)
+target_position = Vector3(0.8, 0, 0)
+collision_mask = 9
+
+[node name="High" type="RayCast3D" parent="Probes"]
+position = Vector3(0, 1.3125, 0)
+target_position = Vector3(0.8, 0, 0)
+collision_mask = 9
+
+[node name="NearGround" type="RayCast3D" parent="Probes"]
+position = Vector3(0.8, 0.65, 0)
+target_position = Vector3(0, -1.5, 0)
+collision_mask = 9
+
+[node name="Landing" type="RayCast3D" parent="Probes"]
+position = Vector3(2.5, 2.2, 0)
+target_position = Vector3(0, -3.5, 0)
+collision_mask = 9
+
+[editable path="VisualRoot"]

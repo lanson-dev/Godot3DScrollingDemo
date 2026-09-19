@@ -1,0 +1,20 @@
+BREACHLINE character combat animations
+
+combat_actions.tres contains editor-visible Godot Animation tracks for the
+existing Quaternius Toon Shooter Game Kit character skeleton.
+
+Hold: upper-body sample of the original CC0 Idle_Shoot animation.
+Reload: authored for this project, adapting that same pose and skeleton.
+Reload hand reach was baked offline using Godot SkeletonIK3D;
+no runtime IK dependency is required. Each action only keys upper-body bone
+rotations, preserving the locomotion layer. One normalized second per action.
+
+The wrapper scene also uses native Godot 4.7.1 TwoBoneIK3D for the support
+hand, with editable SupportGrip and SupportElbow markers. Aim modifier elbow
+angles are Inspector parameters; reload blends out arm aiming and support IK,
+while death disables both. No external runtime IK plugin is required.
+
+Original asset: https://quaternius.com/packs/toonshootergamekit.html
+Original license: CC0 1.0; see assets/models/characters/LICENSE-CC0.txt.
+Adaptations created for the BREACHLINE project on 2026-09-11; no additional
+third-party asset or license requirement was introduced.

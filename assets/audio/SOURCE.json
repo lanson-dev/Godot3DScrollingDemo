@@ -1,0 +1,140 @@
+{
+  "retrieved_on": "2026-09-11",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "attribution_required": false,
+  "verification": "Every included Ogg was fully decoded with FFmpeg; duration is positive, samples are non-silent and finite, and floating-point peak stays below 0 dBFS. Auditory quality and final in-game balance are not yet verified.",
+  "packs": [
+    {
+      "id": "impact",
+      "name": "Impact Sounds",
+      "author": "Kenney",
+      "version": "1.0",
+      "source_url": "https://kenney.nl/assets/impact-sounds",
+      "download_url": "https://kenney.nl/media/pages/assets/impact-sounds/87b4ddecda-1677589768/kenney_impact-sounds.zip",
+      "license_file": "LICENSE_Kenney_Impact.txt",
+      "download_sha256": "029D734AF1582474EDF3A694D1B0CEBC97C1C152F2F39FA34D4C2BAFC5DE77F8"
+    },
+    {
+      "id": "rpg",
+      "name": "RPG Audio",
+      "author": "Kenney",
+      "version": "1.0",
+      "source_url": "https://kenney.nl/assets/rpg-audio",
+      "download_url": "https://kenney.nl/media/pages/assets/rpg-audio/8e99002d76-1677590336/kenney_rpg-audio.zip",
+      "license_file": "LICENSE_Kenney_RPG.txt",
+      "download_sha256": "6DBEAF8544DA958D8F2ADCB4A4A4B76C1ADE34A05F8AB9EDCCD327DA7375F38B"
+    },
+    {
+      "id": "firearms",
+      "name": "The Free Firearm Sound Library - Prepared SFX Library",
+      "author": "Ben Jaszczak, Brian Nelson, Kevin Heras, Matthew Nanney",
+      "version": "2014 prepared archive",
+      "source_url": "https://web.archive.org/web/20141217041948/http://freefirearmsfx.com/",
+      "archive_page": "https://opengameart.org/content/the-free-firearm-sound-library",
+      "download_url": "https://opengameart.org/sites/default/files/Prepared%20SFX%20Library.7z",
+      "license_file": "LICENSE_Firearms.txt",
+      "download_sha256": "CC1AB5A99A0A365105C7C5DD783F4B0B1FE90938114D3CEEC53856BFE005F7D6"
+    },
+    {
+      "id": "shotgun_mechanics",
+      "name": "Shotgun Reload Sound effects",
+      "author": "zer0_sol",
+      "version": "2021-06-20",
+      "source_url": "https://opengameart.org/content/shotgun-reload-sound-effects",
+      "download_url": "https://opengameart.org/sites/default/files/shotgunsounds.zip",
+      "license_file": "LICENSE_zer0_sol.txt",
+      "download_sha256": "31128A93EEE729CADCD1CDEABCA6B6B1F655578101109B59C0FB5DD4B96E6079"
+    }
+  ],
+  "files": [
+    {
+      "file": "kenney/footstep_concrete_000.ogg",
+      "pack": "impact",
+      "source_file": "Audio/footstep_concrete_000.ogg",
+      "use": "Concrete footstep variation 1",
+      "changes": "None",
+      "duration_seconds": 0.11,
+      "peak_dbfs": -0.925,
+      "mean_dbfs": -20.9,
+      "sha256": "D7267E183067757C92C169DE2A379ABEA592CFCA6B39BB2E8FEEA15221AD79FE"
+    },
+    {
+      "file": "kenney/footstep_concrete_001.ogg",
+      "pack": "impact",
+      "source_file": "Audio/footstep_concrete_001.ogg",
+      "use": "Concrete footstep variation 2",
+      "changes": "None",
+      "duration_seconds": 0.11,
+      "peak_dbfs": -1.21,
+      "mean_dbfs": -22.4,
+      "sha256": "507A75EB19B897087855A3BE3CF11A12D7FA37D143AD535EEEBE0B8031C7325D"
+    },
+    {
+      "file": "kenney/footstep_concrete_002.ogg",
+      "pack": "impact",
+      "source_file": "Audio/footstep_concrete_002.ogg",
+      "use": "Concrete footstep variation 3",
+      "changes": "None",
+      "duration_seconds": 0.11,
+      "peak_dbfs": -0.993,
+      "mean_dbfs": -22.7,
+      "sha256": "B21FA546D74941196B25DA8A20B7010ABD8C05C4FCF93545D1F344E66A664E13"
+    },
+    {
+      "file": "kenney/impactMetal_medium_000.ogg",
+      "pack": "impact",
+      "source_file": "Audio/impactMetal_medium_000.ogg",
+      "use": "Metal hit",
+      "changes": "None",
+      "duration_seconds": 0.27,
+      "peak_dbfs": -1.156,
+      "mean_dbfs": -21.5,
+      "sha256": "A96F879FEC0864A8938E0C745B6996A6C5679C16A234CE31A01CC995E8401003"
+    },
+    {
+      "file": "kenney/metalLatch.ogg",
+      "pack": "rpg",
+      "source_file": "Audio/metalLatch.ogg",
+      "use": "Rifle reload/weapon selection mechanical click",
+      "changes": "Gain -5 dB to remove decoded peak overshoot; 48 kHz mono Vorbis quality 5",
+      "duration_seconds": 0.26,
+      "peak_dbfs": -1.252,
+      "mean_dbfs": -23.6,
+      "sha256": "27A427C6B99FBA175F1FDAC3F0D0B6AAC73A72B511DB8681E7006482B3A16EC9"
+    },
+    {
+      "file": "firearms/C_28P_shot01.ogg",
+      "pack": "firearms",
+      "source_file": "Prepared SFX Library/AK-47/C_28P.wav",
+      "use": "AK rifle single shot variation 1",
+      "changes": "Trim from 0.605 s for 0.75 s; gain -3 dB; 100 ms fade at 0.65 s; 48 kHz mono Vorbis quality 5",
+      "duration_seconds": 0.75,
+      "peak_dbfs": -2.966,
+      "mean_dbfs": -27.3,
+      "sha256": "5A48B73ECA22A86437AEFA98B8EDDEFD7DD5454F3BA66FDB8230D176BC267D3F"
+    },
+    {
+      "file": "firearms/O_21P_shot01.ogg",
+      "pack": "firearms",
+      "source_file": "Prepared SFX Library/Nova/O_21P.wav",
+      "use": "Pump-action shotgun single shot",
+      "changes": "Trim from 0.420 s for 0.90 s; gain -6 dB; 100 ms fade at 0.80 s; 48 kHz mono Vorbis quality 5",
+      "duration_seconds": 0.9,
+      "peak_dbfs": -3.568,
+      "mean_dbfs": -30.6,
+      "sha256": "7A9545107D80042CB0F2F92ECE7CD11CFC9358309C7D1B2C078F2BBEC6D3349E"
+    },
+    {
+      "file": "zer0_sol/Rack.ogg",
+      "pack": "shotgun_mechanics",
+      "source_file": "ShotgunSounds/Rack.mp3",
+      "use": "Shotgun pump/reload mechanism",
+      "changes": "Gain -10 dB; 60 ms fade at 1.07 s; 48 kHz mono Vorbis quality 5",
+      "duration_seconds": 1.13,
+      "peak_dbfs": -2.849,
+      "mean_dbfs": -21.6,
+      "sha256": "41D62F1D7548BE29C35B1A1184CEBCE2F9C6FFE9C2366EF360A652E89F31AF06"
+    }
+  ]
+}

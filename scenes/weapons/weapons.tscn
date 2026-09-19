@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://uuxgdeac1q4q"]
+
+[ext_resource type="Script" path="res://scripts/combat/weapons.gd" id="1_weapons"]
+[ext_resource type="Resource" path="res://resources/weapons/rifle.tres" id="2_rifle"]
+[ext_resource type="Resource" path="res://resources/weapons/shotgun.tres" id="3_shotgun"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/projectile.tscn" id="5_projectile"]
+[ext_resource type="PackedScene" path="res://scenes/effects/muzzle_flash.tscn" id="6_flash"]
+[ext_resource type="PackedScene" path="res://scenes/effects/hit_sparks.tscn" id="7_hit"]
+
+[node name="Weapons" type="Node3D"]
+process_mode = 1
+process_physics_priority = 1
+script = ExtResource("1_weapons")
+rifle = ExtResource("2_rifle")
+shotgun = ExtResource("3_shotgun")
+projectile_scene = ExtResource("5_projectile")
+muzzle_flash_scene = ExtResource("6_flash")
+hit_scene = ExtResource("7_hit")
+
+[node name="GunAudio" type="AudioStreamPlayer3D" parent="."]
+volume_db = -8.0
+max_polyphony = 8
+unit_size = 12.0
+max_distance = 60.0
+
+[node name="ActionAudio" type="AudioStreamPlayer3D" parent="."]
+volume_db = -6.0
+unit_size = 12.0
+max_distance = 40.0
