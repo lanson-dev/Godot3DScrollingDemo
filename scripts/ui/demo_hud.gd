@@ -1,5 +1,7 @@
 extends Control
 
+const REPOSITORY_URL: String = "https://github.com/lanson-dev/Godot3DScrollingDemo"
+
 @export var player: BreachPlayer
 @export var hide_system_pointer: bool = true
 @export var reticle_color: Color = Color(0.95, 0.95, 0.91)
@@ -13,6 +15,7 @@ extends Control
 @onready var reload_hint: Label = %ReloadHint
 @onready var chinese_button: Button = %ChineseButton
 @onready var english_button: Button = %EnglishButton
+@onready var repository_button: TextureButton = %RepositoryButton
 
 var _bound: bool = false
 var _pointer: Vector2
@@ -23,6 +26,7 @@ var _spread_radius: float = 0.0
 func _ready() -> void:
 	chinese_button.pressed.connect(_set_language.bind("zh_CN"))
 	english_button.pressed.connect(_set_language.bind("en"))
+	repository_button.pressed.connect(_open_repository)
 	_sync_language_buttons()
 	_bind_player()
 
@@ -144,6 +148,10 @@ func _set_language(locale: String) -> void:
 	_sync_language_buttons()
 	if player != null:
 		_refresh_weapon()
+
+
+func _open_repository() -> void:
+	OS.shell_open(REPOSITORY_URL)
 
 
 func _sync_language_buttons() -> void:

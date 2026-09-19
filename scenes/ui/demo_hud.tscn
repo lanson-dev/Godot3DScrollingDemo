@@ -1,6 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/demo_hud.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/icons/github_lockup_white.svg" id="2_github"]
 
 [sub_resource type="StyleBoxFlat" id="HealthFill"]
 bg_color = Color(0.78, 0.86, 0.78, 1)
@@ -96,6 +97,31 @@ theme_override_font_sizes/font_size = 16
 toggle_mode = true
 button_group = SubResource("Languages")
 text = "English"
+
+[node name="RepositoryPanel" type="ColorRect" parent="."]
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -196.0
+offset_top = 76.0
+offset_right = -20.0
+offset_bottom = 120.0
+grow_horizontal = 0
+mouse_filter = 2
+color = Color(0.055, 0.07, 0.08, 0.74)
+
+[node name="RepositoryButton" type="TextureButton" parent="RepositoryPanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 14.0
+offset_top = 5.0
+offset_right = 162.0
+offset_bottom = 39.0
+mouse_default_cursor_shape = 2
+tooltip_text = "GitHub 仓库 / Repository"
+ignore_texture_size = true
+stretch_mode = 5
+texture_normal = ExtResource("2_github")
 
 [node name="WeaponPanel" type="ColorRect" parent="."]
 layout_mode = 1
